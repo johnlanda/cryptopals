@@ -48,11 +48,11 @@ func MostLikelySingleCharXorKey(chunk []byte) (string, float64, []byte) {
 	minX2 := float64(0)
 	var likelyRes []byte
 
-	for i := 1; i < 128; i++ {
+	for i := 0; i < 128; i++ {
 		res := SingleCharXor(byte(i), string(chunk))
 		score := ScoreAlphabet(string(res), ChiAlphaSpace)
 
-		fmt.Printf("%s: %f\n", []byte{byte(i)}, score)
+		//fmt.Printf("%s: %f\n", []byte{byte(i)}, score)
 
 		if !initMin {
 			initMin = true

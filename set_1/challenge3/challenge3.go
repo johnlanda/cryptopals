@@ -17,26 +17,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	initMin := false
-	minX2Key := ""
-	minX2 := float64(0)
-	likelyRes := ""
-	for alpha := "a"[0]; alpha <= "z"[0]; alpha++ {
-		letter := string(alpha)
-		res := cryptanalysis.SingleCharXor(letter[0], string(decoded))
-		score := cryptanalysis.ScoreAlphabet(string(res), cryptanalysis.ChiAlphaSpace)
-
-		if !initMin {
-			initMin = true
-			minX2 = score
-			minX2Key = letter
-			likelyRes = string(res)
-		} else if score < minX2 {
-			minX2 = score
-			minX2Key = letter
-			likelyRes = string(res)
-		}
-	}
+	minX2Key, minX2, likelyRes := cryptanalysis.MostLikelySingleCharXorKey(decoded)
 
 	fmt.Printf("%s\n%s: %f\n", likelyRes, minX2Key, minX2)
 	
